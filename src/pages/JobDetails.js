@@ -1,26 +1,22 @@
 import React from "react";
 
-import meeting from "../assets/meeting.jpg";
-import { BsArrowRightShort, BsArrowReturnRight } from "react-icons/bs";
 const JobDetails = () => {
-  const {
-    companyName,
-    position,
-    location,
-    experience,
-    workLevel,
-    employmentType,
-    salaryRange,
-    skills,
-    requirements,
-    responsibilities,
-    overview,
-    queries,
-    _id,
-  } = {};
+
+
 
   return (
-    <div className='pt-14 grid grid-cols-12 gap-5'>
+    <div>
+      <h1>The Quick fox jumps </h1>
+
+    </div>
+  );
+};
+
+export default JobDetails;
+
+/*
+
+<div className='pt-14 grid grid-cols-12 gap-5'>
       <div className='col-span-9 mb-10'>
         <div className='h-80 rounded-xl overflow-hidden'>
           <img className='h-full w-full object-cover' src={meeting} alt='' />
@@ -167,7 +163,5 @@ const JobDetails = () => {
         </div>
       </div>
     </div>
-  );
-};
 
-export default JobDetails;
+*/

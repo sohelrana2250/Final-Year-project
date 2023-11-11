@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
-
+import { useCandidateRegisterMutation } from "../../features/api/apiSlice";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 const CandidateRegistration = () => {
   const [countries, setCountries] = useState([]);
-  const { handleSubmit, register, control } = useForm();
+  const { handleSubmit, register, control, reset } = useForm();
   const term = useWatch({ control, name: "term" });
-  console.log(term);
+
   const navigate = useNavigate();
+  const [candidatePost, { data, isSuccess, error }] = useCandidateRegisterMutation();
+  const { user: { email } } = useSelector((state) => state.auth);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -17,8 +21,24 @@ const CandidateRegistration = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+
+    candidatePost({ ...data, role: 'candidate' });
+    reset();
+
   };
+
+
+  useEffect(() => {
+    if (data?.acknowledged && isSuccess) {
+      Swal.fire('Successfully ', 'create-candidate-account');
+      navigate("/");
+
+    }
+    else {
+      error && Swal.fire('System Error ', error?.message);
+    }
+
+  }, [data, isSuccess, error, navigate]);
 
   return (
     <div className='pt-14'>
@@ -39,19 +59,19 @@ const CandidateRegistration = () => {
             <label className='mb-2' htmlFor='firstName'>
               First Name
             </label>
-            <input type='text' id='firstName' {...register("firstName")} />
+            <input type='text' id='firstName' {...register("firstName")} className="rounded-xl input input-bordered w-full" />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <label className='mb-2' htmlFor='lastName'>
               Last Name
             </label>
-            <input type='text' id='lastName' {...register("lastName")} />
+            <input type='text' id='lastName' {...register("lastName")} className=" rounded-xl input input-bordered w-full max-w-xl" />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <label className='mb-2' htmlFor='email'>
               Email
             </label>
-            <input type='email' id='email' {...register("email")} />
+            <input type='email' id='email' readOnly defaultValue={email} {...register("email")} className=" rounded-xl input input-bordered w-full max-w-xl" />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <h1 className='mb-3'>Gender</h1>
@@ -96,7 +116,7 @@ const CandidateRegistration = () => {
             <label className='mb-3' for='country'>
               Country
             </label>
-            <select {...register("country")} id='country'>
+            <select {...register("country")} id='country' className="rounded-xl input input-bordered w-full max-w-xl">
               {countries
                 .sort((a, b) => a?.name?.common?.localeCompare(b?.name?.common))
                 .map(({ name }) => (
@@ -108,32 +128,40 @@ const CandidateRegistration = () => {
             <label className='mb-2' htmlFor='address'>
               Street Address
             </label>
-            <input type='text' {...register("address")} id='address' />
+            <input type='text' {...register("address")} id='address' className="rounded-xl input input-bordered w-full max-w-xl" />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <label className='mb-2' htmlFor='city'>
               City
             </label>
-            <input type='text' {...register("city")} id='city' />
+            <input type='text' {...register("city")} id='city' className="rounded-xl input input-bordered w-full max-w-xl" />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <label className='mb-2' htmlFor='postcode'>
               Postal Code
             </label>
-            <input type='text' {...register("postcode")} id='postcode' />
+            <input type='text' {...register("postcode")} id='postcode' className="rounded-xl input input-bordered w-full max-w-xl" />
+          </div>
+
+          <div className='flex flex-col w-full max-w-xs'>
+            <label className='mb-2' htmlFor='cvurl'>
+              Provide Your CV URL
+            </label>
+            <input type='text' {...register("cvurl")} id='cvurl' className="rounded-xl input input-bordered w-full max-w-xl" />
           </div>
 
           <div className='flex justify-between items-center w-full mt-3'>
-            <div className='flex  w-full max-w-xs'>
+            <div className='rounded-xl flex  w-full max-w-xs'>
               <input
                 className='mr-3'
                 type='checkbox'
                 {...register("term")}
                 id='terms'
+
               />
               <label for='terms'>I agree to terms and conditions</label>
             </div>
-            <button disabled={!term} className='btn' type='submit'>
+            <button disabled={!term} className='btn btn-outline btn-sm' type='submit'>
               Submit
             </button>
           </div>
