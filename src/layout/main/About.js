@@ -63,7 +63,7 @@ const About = () => {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-xl">
                         <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                        <p className="mb-5">Leading the way to a brighter future. Connecting talent with opportunity. Your partner in workforce excellence. Bridging the gap to your dream career</p>
+                        <p className="mb-5">Leading the way to a brighter future. Connecting talent with opportunity. Your partner in workforce excellence. Bridging the gap to your dream career Sohel Rana</p>
                         <button className=" btn btn-outline  btn-sm text-white">Get Started</button>
                     </div>
                 </div>
