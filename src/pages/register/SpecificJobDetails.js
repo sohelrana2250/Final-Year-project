@@ -167,7 +167,7 @@ const SpecificJobDetails = () => {
                                 <h1 className='text-xl font-semibold text-primary'>{position}</h1>
 
                                 {user?.role === process.env.REACT_APP_CANDIDATE_USER && <>
-
+                                    {/* `/Quiz/${_id}` */}
                                     <div className="inline-flex rounded-md shadow-sm mt-3" role="group">
                                         <button className='btn btn-outline btn-sm' disabled={jobapply} onClick={handelApplay}>Apply</button>
                                         <button className='btn btn-outline btn-sm ml-2' onClick={() => navigate()} >Quiz </button>

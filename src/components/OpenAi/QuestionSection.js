@@ -15,7 +15,7 @@ const QuestionSection = () => {
 
     const navigate = useNavigate();
     const openai = new OpenAI({
-        apiKey: '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',
+        apiKey: process.env.REACT_APP_OPENAI,
         dangerouslyAllowBrowser: true // defaults to process.env["OPENAI_API_KEY"]
     });
 

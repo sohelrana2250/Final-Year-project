@@ -109,7 +109,7 @@ const Navbar = () => {
 
     <li className='m-1'>
       <Link className='btn btn-outline btn-sm text-white' to='/jobs'>
-        Jobs
+        Non-Org
       </Link>
     </li>
 
@@ -118,7 +118,7 @@ const Navbar = () => {
         className='btn btn-outline btn-sm text-white'
         to="/home"
       >
-        Home
+        Org
       </Link>
     </li>
 
@@ -148,6 +148,7 @@ const Navbar = () => {
         Service
       </Link>
     </li>
+
 
     <li className='m-1'>
       <Link
@@ -210,7 +211,7 @@ const Navbar = () => {
         <li className='m-1'>
           <Link
             className='btn btn-outline btn-sm text-white'
-            to='/register'
+            to='/signup'
           >
             Register
           </Link>

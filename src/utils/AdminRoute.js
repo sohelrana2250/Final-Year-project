@@ -10,10 +10,8 @@ const AdminRoute = ({ children }) => {
 
     const { data } = useFind_by_isitAdminQuery(email, { refetchOnMountOrArgChange: true });
 
-
     //
 
-    console.log(data?.isAdmin);
 
 
     if (isLoading) {

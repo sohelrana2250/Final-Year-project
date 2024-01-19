@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import OpenAI from 'openai';
+
 import { BiSend } from 'react-icons/bi';
-import { toast } from 'react-hot-toast';
+import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const ChatBot = () => {
 
     // new-api-key : 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
+    //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
     const navigate = useNavigate();
     const [aiAssestance, setAiAssestance] = useState([]);
 
     const openai = new OpenAI({
-        apiKey: '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',
+        apiKey: process.env.REACT_APP_OPENAI,
         dangerouslyAllowBrowser: true // defaults to process.env["OPENAI_API_KEY"]
     });
+
 
 
 
@@ -28,7 +31,6 @@ const ChatBot = () => {
             });
 
             const AiMessage = response.choices[0].message.content;
-            console.log(AiMessage);
             setAiAssestance([...aiAssestance, AiMessage]);
         }
         catch (error) {

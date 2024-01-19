@@ -9,7 +9,7 @@ import OpenAI from 'openai';
 const Quiz = () => {
 
     const openai = new OpenAI({
-        apiKey: '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',
+        apiKey: process.env.REACT_APP_OPENAI,
         dangerouslyAllowBrowser: true // defaults to process.env["OPENAI_API_KEY"]
     });
 
@@ -44,28 +44,15 @@ const Quiz = () => {
     const generteQuiz = async (number, topic) => {
 
 
-        console.log(number, topic);
+
 
         try {
-            /*  const completion = await openai.createCompletion({
-                  model: "text-davinci-003",
-                  prompt: `write ${number} quiz about ${topic} js with 4 options and correct answers JSON stringified  without  variable `,
-                  temperature: 0.5,
-                  max_tokens: 2048,
-                  top_p: 1.0,
-                  frequency_penalty: 0.0,
-                  presence_penalty: 0.0,
-                  stop: [`${number}`]
-  //write ${number} quiz about ${topic}  with 4 options and correct answers JSON stringified  without  variable
-              });*/
 
             const response = await openai.chat.completions.create({
                 model: "gpt-3.5-turbo",
                 messages: [{ role: "user", content: `generate  a ${number} quiz about ${topic}  with 4 options and correct answers, JSON stringified format,  without  variable` }],
                 temperature: 0.8,
                 max_tokens: 2048,
-
-
             });
 
 

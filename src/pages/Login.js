@@ -20,7 +20,6 @@ const Login = () => {
   const [jwtToken, { data: token }] = useJwtTokenMutation();
   const [deviceInfo, { data }] = usePostDeviceInformationMutation();
 
-
   useEffect(() => {
     if (
       password !== undefined &&
@@ -39,6 +38,7 @@ const Login = () => {
     const currentUser = {
       email: data.email
     }
+
     jwtToken(currentUser);
     deviceInfo({ email: data.email, name: data?.name, photoURL: photoURL });
     reset();

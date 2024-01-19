@@ -10,17 +10,7 @@ const CommonContentAllJob = ({ data, handelContact_Information, handelDeletesubm
     const navigate = useNavigate();
     return (
         <>
-
-
-
             <div className="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-4 m-3">
-
-                {/* {
-    data?.status &&  data?.data?.filter((item) => {
-        return search.toLowerCase() === "" ? item : item?.constent_data?.floating_tittle.toLowerCase().includes(search) || item.email.toLowerCase().includes(search) || item?.floating_first_name?.toLowerCase().includes(search) || item?.floating_last_name?.toLowerCase().includes(search) || item.email.toLowerCase().includes(search) || item?.floating_first_name?.toLowerCase().includes(search)
-
-    }).map((v, index)
-} */}
                 {
                     data?.status && data?.data?.filter((item) => {
                         return search.toLowerCase() === "" ? item : item?.constent_data?.floating_tittle?.toLowerCase().includes(search) || item?.email?.toLowerCase().includes(search) || item?.email?.includes(search)
@@ -175,8 +165,45 @@ const CommonContentAllJob = ({ data, handelContact_Information, handelDeletesubm
 
                             </div>
 
-                            <div className="card-actions justify-end">
+                            {/*Content Base Interview List  */}
 
+                            {
+                                v?.c_b_Interview?.length >= 1 && <div className="grid md:grid-cols-1 md:gap-6">
+                                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+
+                                            <thead className="text-xs text-gray-700 uppercase  bg-[#082f49] dark:text-gray-400">
+                                                <tr>
+                                                    <th scope="col" className="px-6 py-3">
+                                                        Interview ID
+                                                    </th>
+                                                    <th scope="col" className="px-6 py-3">
+                                                        Employeer Email
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                {
+                                                    v?.c_b_Interview?.map((val, index) => <tr key={index} className=" border-b bg-[#082f49] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            {val?.id}
+                                                        </th>
+                                                        <td className="px-6 py-4">
+                                                            {val?.email
+                                                            }
+                                                        </td>
+
+                                                    </tr>)
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                            <div className="card-actions justify-end">
 
                                 {isAllow ? <>
 

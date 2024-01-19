@@ -11,6 +11,7 @@ import { useJwtTokenMutation } from "../features/api/apiDevicesSlice";
 
 
 
+
 const Signup = () => {
 
 
@@ -49,10 +50,12 @@ const Signup = () => {
   const onSubmit = (data) => {
 
     const image = data.photo[0];
+    //https://api.imgbb.com/1/upload?key=${imageHostKey}
+    //https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}
     const formData = new FormData();
     formData.append('image', image);
     jwtToken({ email: data.email });
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
     fetch(url, {
       method: 'POST',
       body: formData

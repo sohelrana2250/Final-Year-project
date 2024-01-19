@@ -27,7 +27,7 @@ import UserProfile from "../components/UserProfile/UserProfile";
 import UpdateCandidateInfo from "../pages/candidateDashboard/UpdateCandidateInfo";
 import InterviewerList from "../pages/employeeDashboard/InterviewerList";
 
-//import Quiz from "../components/OpenAi/Quiz";
+import Quiz from "../components/OpenAi/Quiz";
 import ChatBot from "../components/OpenAi/ChatBot";
 import QuestionSection from "../components/OpenAi/QuestionSection";
 import VedioContent from "../components/UserProfile/VedioContent";
@@ -66,6 +66,7 @@ import AdminGraph from "../components/Admin_Dashboard/AdminGraph";
         path: 'QuizSection/:id',
         element: <Quiz />
       }, */
+
 
 
 const routes = createBrowserRouter([
@@ -110,8 +111,9 @@ const routes = createBrowserRouter([
         element: <Signup />,
       },
       {
+
         path: '/vedio-content',
-        element: <VedioContent />
+        element: <PrivateRoute><VedioContent /></PrivateRoute>
 
       },
       {
@@ -169,13 +171,17 @@ const routes = createBrowserRouter([
       },
       {
         path: '/content',
-        element: <ContentDisplay />
+        element: <PrivateRoute><ContentDisplay /></PrivateRoute>
       },
       {
         path: "/SpecificJobList/:id",
-        element: <SpecificJobList></SpecificJobList>
+        element: <PrivateRoute><SpecificJobList></SpecificJobList></PrivateRoute>
 
       },
+      {
+        path: "/Quiz/:id",
+        element: <PrivateRoute><Quiz /></PrivateRoute>
+      }
 
 
 
